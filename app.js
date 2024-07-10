@@ -5,8 +5,10 @@ import cors from 'cors';
 import morgan from 'morgan';
 import multer from 'multer';
 import fs from 'fs';
-import config from './config/config.js';
-import { analyzeImage } from './services/imageAnalysisService.js';
+import dotenv from 'dotenv';
+import { analyzeImage, calculateProbability } from './services/imageAnalysisService.js';
+
+dotenv.config();
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -15,7 +17,14 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('dev'));
 
-mongoose.connect(config.mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoUri = process.env.MONGO_URI;
+if (!mongoUri) {
+  throw new Error('MONGO_URI is not defined in the environment variables');
+}
+
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch((error) => console.error('MongoDB connection error:', error));
 
 app.post('/api/upload', upload.single('image'), async (req, res) => {
     try {
@@ -25,11 +34,11 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Failed to analyze image' });
     } finally {
-        fs.unlinkSync(req.file.path);  
+        fs.unlinkSync(req.file.path);
     }
 });
 
-const PORT = config.port || 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
