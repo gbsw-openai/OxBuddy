@@ -1,0 +1,42 @@
+*{
+    background-color: #FFF3F3;
+}
+.header {
+    margin-bottom: 30px;
+}
+.navi_content {
+    padding: 2px ;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size:18px;  
+    border-radius:100px;
+    background-color:white;
+    width: 120px;
+    height: 40px;
+    
+}
+
+.content_container{
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+.profile_change{
+    position: absolute;
+    left: 80%;
+    bottom: 8%;
+    font-size: 20px;
+    background-color: white;
+    color: #E56767;
+    width: 170px;
+    display: flex;
+    text-align: center;
+    height: 45px;
+    
+}
+
+.profile_change img{
+    background-color: white;
+    margin-left: 7px;
+    width: 30px;
+}

@@ -1,0 +1,31 @@
+*{
+    background-color: #FFF3F3;
+}
+.header {
+    margin-bottom: 50px;
+}
+
+.navi_content {
+    padding: 2px ;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size:18px;  
+    border-radius:100px;
+    background-color:white;
+    width: 120px;
+    height: 40px;
+    
+}
+
+.content_container{
+    display: flex;
+    justify-content: center;
+}
+
+.records{
+    background-color: white;
+    color: #E56767;
+    font-weight: bold;
+    border-radius: 20px;
+    
+}

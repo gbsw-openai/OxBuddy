@@ -1,0 +1,39 @@
+*{
+    background-color: #FFF3F3;
+}
+
+.navi_content {
+    padding: 2px ;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size:18px;  
+    border-radius:100px;
+    background-color:white;
+    width: 120px;
+    height: 40px;
+    
+}
+
+.okbun {
+    position: absolute;
+    width: 180px;
+    left: 0;
+}
+
+.dobun {
+    position: absolute;
+    width: 230px;
+    left: 70%;
+    top: 37%;
+}
+
+.solve_problem{
+    color:white;
+    font-size: 20px;
+    background-color:#F1A7A7;
+    border-radius:15px;
+    padding: 8px 30px;
+    width: 220px;
+    height: 40px;
+    margin-bottom: 5px;
+}

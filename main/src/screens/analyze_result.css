@@ -1,0 +1,39 @@
+* {
+    background-color: #FFF3F3;
+    box-sizing: border-box;
+}
+
+.header {
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 50px;
+}
+
+.navi_content {
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    border-radius: 100px;
+    background-color: white;
+    width: 120px;
+    height: 40px;
+}
+
+.content_container {
+    margin-top: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
+    flex-direction: column;
+}
+
+.analyze_result {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.result {
+    color: #E56767;
+    font-weight: bold;
+    font-size: 23px;
+}

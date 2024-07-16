@@ -1,0 +1,146 @@
+*{
+    background-color: #FFF3F3;
+    box-sizing: border-box;
+    margin-left: 0;
+}
+.header {
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 30px;
+    
+}
+
+.title{
+    margin-bottom: 10px;
+}
+
+.content_container{
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.form_content{
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.question_box {
+    flex: 1;
+    margin-bottom: 10px;
+    margin-right: 60px;
+}
+
+
+.left, .right {
+    flex: 1;
+}
+
+.lr_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left,.right, .question_box{
+    flex: 1;
+}
+
+.left label,
+.right label,
+.question_box label{
+    display: block;
+    color: #E56767;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.left input,
+.right input {
+    width: calc(100% - 20%);
+    padding: 10px;
+    border: 1px solid #E56767;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.question_box input {
+    width: 750px;
+    padding: 10px;
+    border: 1px solid #E56767;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.upload{
+    width: calc(100% - 20%);
+    height: 500px;
+}
+
+
+.navi_content {
+    padding: 2px ;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size:18px;  
+    border-radius:100px;
+    background-color:white;
+    width: 120px;
+    height: 40px;
+    
+}
+
+button{
+    font-size: 40px;
+    height: 60px;
+    width: 60px;
+    padding-left: 10px;
+    background-color: #F4ADAD;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    display: block;
+    cursor: pointer;
+    align-self: center;
+    align-items: center;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: calc(100% - 20%);
+    height: 10px;
+    border: 1px solid #E56767;
+    border-radius: 5px;
+    background: white;
+    outline: none;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #E56767; /* Thumb color */
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #E56767; /* Thumb color */
+    cursor: pointer;
+}
