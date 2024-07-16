@@ -2,21 +2,51 @@ from fastapi import FastAPI, HTTPException, Request
 import openai
 from dotenv import load_dotenv
 import os
+from pydantic import BaseModel, Field
 
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# 환경 변수가 제대로 로드되었는지 확인
+api_key = os.getenv("OPENAI_API_KEY")
+print(f"Loaded API Key: {api_key}")
+
+# 직접 API 키 설정 (필요한 경우)
+# openai.api_key = "sk-************************"
+
+openai.api_key = api_key
 
 app = FastAPI()
 
-@app.post("/analyze")
-async def ask(request: Request):
-    try:
-        data = await request.json()
-        question = data.get("question", "")
-        follow_up_question = data.get("follow_up_question", "")
+class AnalyzeRequest(BaseModel):
+    relationship_status: str
+    response_time: str
+    contact_frequency: str
+    contact_duration: str
+    contact_interval: int = Field(..., description="Contact interval in minutes")
+    question: str
+    follow_up_question: str = None
 
-        # Main question prompt
+analyze_data = {}
+
+@app.post("/analyze")
+async def analyze(request: AnalyzeRequest):
+    try:
+        global analyze_data
+        analyze_data = request.dict()
+        print("Data received:", analyze_data)  
+        return {"message": "Data received successfully. You can now access the result at /analyze_result."}
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/analyze_result")
+async def analyze_result():
+    try:
+        global analyze_data
+        print("Fetching result for data:", analyze_data) 
+        if not analyze_data:
+            raise HTTPException(status_code=400, detail="No data found. Please submit your data to /analyze first.")
+
         messages = [
             {
                 "role": "system",
@@ -32,14 +62,21 @@ async def ask(request: Request):
             },
             {
                 "role": "user",
-                "content": question
+                "content": f"""
+                Relationship status: {analyze_data['relationship_status']}
+                Response time: {analyze_data['response_time']}
+                Contact frequency: {analyze_data['contact_frequency']}
+                Contact duration: {analyze_data['contact_duration']}
+                Contact interval: {analyze_data['contact_interval']} minutes
+                Question: {analyze_data['question']}
+                """
             }
         ]
 
-        if follow_up_question:
+        if analyze_data.get('follow_up_question'):
             messages.append({
                 "role": "user",
-                "content": follow_up_question
+                "content": analyze_data['follow_up_question']
             })
 
         response = openai.ChatCompletion.create(
